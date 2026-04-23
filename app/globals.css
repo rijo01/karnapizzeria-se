@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+/* ============================================
+   KÄRNA PIZZERIA — PREMIUM AESTHETIC SYSTEM
+   Mörkt, elegant, Eataly-vibe med italiensk värme
+   ============================================ */
+
+@theme {
+  /* Custom Fonts */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "DM Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Deep warm blacks & creams */
+  --color-ink: oklch(0.13 0.015 50);
+  --color-ink-50: oklch(0.17 0.018 50);
+  --color-ink-100: oklch(0.22 0.02 50);
+  --color-ink-200: oklch(0.3 0.02 50);
+
+  --color-cream: oklch(0.96 0.025 85);
+  --color-cream-soft: oklch(0.92 0.03 85);
+  --color-cream-muted: oklch(0.82 0.035 80);
+
+  /* Italian accent — terrakotta/saffron */
+  --color-terracotta: oklch(0.68 0.17 40);
+  --color-terracotta-bright: oklch(0.74 0.19 42);
+  --color-saffron: oklch(0.82 0.15 85);
+  --color-basil: oklch(0.55 0.12 140);
+
+  /* San Marzano red for CTA */
+  --color-tomato: oklch(0.58 0.22 25);
+  --color-tomato-bright: oklch(0.64 0.23 27);
+}
+
+/* ---------- Font Loading ---------- */
+@font-face {
+  font-family: "Fraunces";
+  src: url("https://fonts.gstatic.com/s/fraunces/v33/6NUh8FyLNQOQZAnv9ZwNjucMHVn85Ni7emAe9lKqZTnbB-gzTK.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("https://fonts.gstatic.com/s/fraunces/v33/6NUh8FyLNQOQZAnv9ZwNjucMHVrX49i7emAe9lKqZTnbB-gzTK.woff2") format("woff2");
+  font-weight: 300 900;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "DM Sans";
+  src: url("https://fonts.gstatic.com/s/dmsans/v15/rP2tp2ywxg089UriI5-g7vlQH6HNsDI.woff2") format("woff2");
+  font-weight: 100 1000;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Base ---------- */
+html {
+  background: var(--color-ink);
+  color: var(--color-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  font-feature-settings: "ss01", "cv01";
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.22 0.05 30 / 0.4), transparent),
+    radial-gradient(ellipse 60% 40% at 100% 100%, oklch(0.2 0.06 40 / 0.3), transparent),
+    var(--color-ink);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Subtle grain texture overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: overlay;
+}
+
+/* ---------- Typography Utilities ---------- */
+.font-display { font-family: var(--font-display); }
+.font-body { font-family: var(--font-body); }
+
+.text-display {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  line-height: 0.92;
+}
+
+.text-label {
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* ---------- Decorative ---------- */
+.gradient-text {
+  background: linear-gradient(110deg, var(--color-cream) 0%, var(--color-saffron) 50%, var(--color-terracotta-bright) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.divider-ornament {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: var(--color-terracotta);
+}
+.divider-ornament::before,
+.divider-ornament::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--color-ink-200), transparent);
+}
+
+/* ---------- Animations ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.9); }
+}
+@keyframes steam {
+  0% { opacity: 0; transform: translateY(0) scale(1); }
+  30% { opacity: 0.6; }
+  100% { opacity: 0; transform: translateY(-40px) scale(1.8); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-rise {
+  animation: rise 0.8s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.animate-fade-in {
+  animation: fade-in 1s ease-out both;
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ---------- Scrollbar ---------- */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-ink);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-ink-200);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-terracotta);
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background: var(--color-terracotta);
+  color: var(--color-ink);
+}
+
+/* ---------- Decorative card glow ---------- */
+.card-glow {
+  position: relative;
+}
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, oklch(0.68 0.17 40 / 0.4), transparent 40%, oklch(0.82 0.15 85 / 0.3));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+.card-glow:hover::before {
+  opacity: 1;
+}
+
+/* ---------- Button styles ---------- */
+.btn-primary {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.9rem 1.75rem;
+  background: var(--color-terracotta);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  letter-spacing: 0.02em;
+  border-radius: 999px;
+  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  overflow: hidden;
+  white-space: nowrap;
+}
+.btn-primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, transparent 30%, oklch(1 0 0 / 0.3) 50%, transparent 70%);
+  background-size: 200% 100%;
+  background-position: -200% 0;
+  transition: background-position 0.7s ease;
+}
+.btn-primary:hover {
+  background: var(--color-terracotta-bright);
+  transform: translateY(-1px);
+  box-shadow: 0 14px 40px -12px oklch(0.68 0.17 40 / 0.5);
+}
+.btn-primary:hover::before {
+  background-position: 200% 0;
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid oklch(1 0 0 / 0.15);
+  color: var(--color-cream);
+  border-radius: 999px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: transparent;
+}
+.btn-ghost:hover {
+  border-color: var(--color-terracotta);
+  background: oklch(0.68 0.17 40 / 0.1);
+}
+
+/* ---------- Menu item styling ---------- */
+.menu-item {
+  position: relative;
+  padding: 1.25rem 0;
+  border-bottom: 1px solid oklch(1 0 0 / 0.06);
+  transition: padding 0.3s ease;
+}
+.menu-item:hover {
+  padding-left: 0.5rem;
+}
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-item-dots {
+  flex: 1;
+  border-bottom: 1px dotted oklch(1 0 0 / 0.15);
+  margin: 0 0.75rem;
+  transform: translateY(-4px);
+}
+
+/* ---------- Stagger delays ---------- */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+.stagger-6 { animation-delay: 0.6s; }
+
+/* ---------- Responsive safety ---------- */
+@media (max-width: 640px) {
+  .text-display {
+    letter-spacing: -0.025em;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
