@@ -203,8 +203,8 @@ export const restaurantInfo = {
   country: "SE",
   coordinates: {
     // Kärnatorget 1, 442 70 Kärna
-    lat: 57.8736,
-    lng: 11.8694,
+    lat: 57.8443,
+    lng: 11.7907,
   },
   hours: {
     // Tisdag-Söndag 12:00-21:00, Måndag stängt

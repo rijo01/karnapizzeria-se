@@ -3,7 +3,7 @@ import { getAllHours } from "@/lib/hours";
 
 export default function LocationSection() {
   const hours = getAllHours();
-  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${restaurantInfo.coordinates.lng - 0.01},${restaurantInfo.coordinates.lat - 0.005},${restaurantInfo.coordinates.lng + 0.01},${restaurantInfo.coordinates.lat + 0.005}&layer=mapnik&marker=${restaurantInfo.coordinates.lat},${restaurantInfo.coordinates.lng}`;
+  const mapUrl = `https://www.openstreetmap.org/export/embed.html?bbox=${restaurantInfo.coordinates.lng - 0.006},${restaurantInfo.coordinates.lat - 0.0025},${restaurantInfo.coordinates.lng + 0.006},${restaurantInfo.coordinates.lat + 0.0025}&layer=mapnik&marker=${restaurantInfo.coordinates.lat},${restaurantInfo.coordinates.lng}`;
   const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
     `${restaurantInfo.address}, ${restaurantInfo.postalCode} ${restaurantInfo.city}`
   )}`;
