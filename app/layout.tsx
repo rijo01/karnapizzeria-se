@@ -34,11 +34,20 @@ export const metadata: Metadata = {
     title: "Kärna Pizzeria — Handgjord pizza i hjärtat av Kärna",
     description:
       "73 pizzor, kebab, hamburgare & sallader. Dagens lunch 130:- inkl. dricka & sallad. Ring 0303-22 12 88.",
+    images: [
+      {
+        url: "/images/calzone-bakad-rund.jpg",
+        width: 720,
+        height: 960,
+        alt: "Kärna Pizzeria — handgjord pizza",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kärna Pizzeria",
     description: "Handgjord pizza, kebab & hamburgare i Kärna. Dagens lunch 130:-",
+    images: ["/images/calzone-bakad-rund.jpg"],
   },
   robots: {
     index: true,

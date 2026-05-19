@@ -61,6 +61,12 @@ export default function Header() {
               Meny
             </Link>
             <Link
+              href="/galleri"
+              className="text-sm text-[var(--color-cream-soft)] hover:text-[var(--color-terracotta-bright)] transition-colors"
+            >
+              Galleri
+            </Link>
+            <Link
               href="/#lunch"
               className="text-sm text-[var(--color-cream-soft)] hover:text-[var(--color-terracotta-bright)] transition-colors"
             >

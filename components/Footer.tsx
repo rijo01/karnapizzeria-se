@@ -57,6 +57,14 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/galleri"
+                  className="text-[var(--color-cream-soft)] hover:text-[var(--color-terracotta-bright)] transition-colors"
+                >
+                  Galleri
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/#lunch"
                   className="text-[var(--color-cream-soft)] hover:text-[var(--color-terracotta-bright)] transition-colors"
                 >

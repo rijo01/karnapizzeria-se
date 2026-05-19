@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { restaurantInfo } from "@/lib/menu";
+import { heroImage, imagePath } from "@/lib/images";
 
 export default function Hero() {
   const [status, setStatus] = useState<{
@@ -109,92 +111,27 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right: SVG Pizza Illustration */}
+          {/* Right: Hero pizza photo */}
           <div className="relative hidden lg:flex items-center justify-center">
-            <div className="relative w-full max-w-[500px] aspect-square animate-fade-in stagger-2">
+            <div className="pizza-wrap relative w-full max-w-[500px] aspect-square animate-fade-in stagger-2">
               {/* Rotating glow ring */}
               <div
-                className="absolute inset-0 rounded-full opacity-30 blur-3xl"
+                className="pizza-glow absolute inset-0 rounded-full opacity-30 blur-3xl"
                 style={{
                   background: "conic-gradient(from 0deg, var(--color-terracotta), var(--color-saffron), var(--color-tomato), var(--color-terracotta))",
                   animation: "spin 20s linear infinite",
                 }}
               />
-              <svg viewBox="0 0 400 400" className="relative w-full h-full drop-shadow-2xl">
-                {/* Crust shadow */}
-                <circle cx="200" cy="205" r="175" fill="oklch(0.08 0.02 40)" opacity="0.6" />
-                {/* Crust outer */}
-                <circle cx="200" cy="200" r="180" fill="oklch(0.55 0.08 55)" />
-                {/* Crust inner highlight */}
-                <circle cx="200" cy="200" r="175" fill="oklch(0.65 0.1 55)" />
-                {/* Sauce base */}
-                <circle cx="200" cy="200" r="155" fill="oklch(0.45 0.17 28)" />
-                {/* Sauce texture */}
-                <circle cx="200" cy="200" r="155" fill="url(#sauceGrad)" />
-
-                <defs>
-                  <radialGradient id="sauceGrad" cx="40%" cy="35%">
-                    <stop offset="0%" stopColor="oklch(0.58 0.18 30)" />
-                    <stop offset="100%" stopColor="oklch(0.4 0.16 25)" />
-                  </radialGradient>
-                </defs>
-
-                {/* Mozzarella blobs */}
-                {[
-                  { cx: 150, cy: 140, r: 28 },
-                  { cx: 250, cy: 160, r: 22 },
-                  { cx: 180, cy: 230, r: 25 },
-                  { cx: 260, cy: 250, r: 20 },
-                  { cx: 140, cy: 260, r: 18 },
-                  { cx: 220, cy: 120, r: 15 },
-                ].map((blob, i) => (
-                  <g key={i}>
-                    <circle cx={blob.cx} cy={blob.cy} r={blob.r} fill="oklch(0.95 0.04 85)" />
-                    <circle cx={blob.cx - blob.r * 0.3} cy={blob.cy - blob.r * 0.3} r={blob.r * 0.4} fill="oklch(0.98 0.02 85)" opacity="0.7" />
-                  </g>
-                ))}
-
-                {/* Cherry tomatoes */}
-                {[
-                  { cx: 160, cy: 180 },
-                  { cx: 240, cy: 200 },
-                  { cx: 200, cy: 270 },
-                  { cx: 280, cy: 180 },
-                ].map((tom, i) => (
-                  <g key={i}>
-                    <circle cx={tom.cx} cy={tom.cy} r="12" fill="oklch(0.6 0.22 28)" />
-                    <ellipse cx={tom.cx - 3} cy={tom.cy - 4} rx="3" ry="2" fill="oklch(0.85 0.15 30)" opacity="0.6" />
-                  </g>
-                ))}
-
-                {/* Basil leaves */}
-                {[
-                  { cx: 130, cy: 200, rot: -20 },
-                  { cx: 280, cy: 220, rot: 45 },
-                  { cx: 210, cy: 150, rot: 80 },
-                  { cx: 170, cy: 290, rot: -45 },
-                ].map((leaf, i) => (
-                  <g key={i} transform={`translate(${leaf.cx}, ${leaf.cy}) rotate(${leaf.rot})`}>
-                    <ellipse cx="0" cy="0" rx="8" ry="16" fill="oklch(0.5 0.15 140)" />
-                    <ellipse cx="-1" cy="-2" rx="5" ry="12" fill="oklch(0.6 0.17 140)" opacity="0.8" />
-                    <line x1="0" y1="-14" x2="0" y2="14" stroke="oklch(0.35 0.1 140)" strokeWidth="0.5" />
-                  </g>
-                ))}
-
-                {/* Steam */}
-                {[0, 1, 2].map((i) => (
-                  <g key={i} style={{ animation: `steam 3s ease-out ${i * 0.6}s infinite` }}>
-                    <path
-                      d={`M${180 + i * 20},50 Q${185 + i * 20},30 ${180 + i * 20},10`}
-                      stroke="oklch(0.9 0.02 80)"
-                      strokeWidth="3"
-                      strokeLinecap="round"
-                      fill="none"
-                      opacity="0.4"
-                    />
-                  </g>
-                ))}
-              </svg>
+              <div className="relative w-full aspect-square rounded-full overflow-hidden drop-shadow-2xl group">
+                <Image
+                  src={imagePath(heroImage.basename, "webp")}
+                  alt={heroImage.alt}
+                  fill
+                  priority
+                  sizes="(max-width: 1024px) 0px, 500px"
+                  className="object-cover transition-transform duration-700 ease-out scale-100 group-hover:scale-105"
+                />
+              </div>
             </div>
           </div>
         </div>
