@@ -6,7 +6,7 @@ import "./globals.css";
 /** GA4 mät-id: stream "Karnapizza" i property "Alla Sajter" (533207956). */
 const GA_ID = "G-Z392ZPXZFF";
 
-const SITE_URL = "https://karnapizza.se";
+const SITE_URL = "https://www.karnapizza.se";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
