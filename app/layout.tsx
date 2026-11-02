@@ -1,8 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import { restaurantInfo, menuItems } from "@/lib/menu";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
-const SITE_URL = "https://karnapizzeria.se";
+/** GA4 mät-id: stream "Karnapizza" i property "Alla Sajter" (533207956). */
+const GA_ID = "G-Z392ZPXZFF";
+
+const SITE_URL = "https://karnapizza.se";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -154,7 +158,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           dangerouslySetInnerHTML={{ __html: generateJsonLd() }}
         />
       </head>
-      <body className="antialiased">{children}</body>
+      <body className="antialiased">
+        {children}
+        <GoogleAnalytics gaId={GA_ID} />
+      </body>
     </html>
   );
 }
